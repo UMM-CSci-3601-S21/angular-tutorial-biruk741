@@ -7,13 +7,15 @@ import { CartService } from '../cart.service';
   styleUrls: ['./shipping.component.css']
 })
 export class ShippingComponent implements OnInit {
-  shippingCosts = this.cartService.getShippingPrices();
+  shippingCosts :any[] = this.cartService.getShippingPricesPlaceholder();
 
   constructor(private cartService: CartService) { }
 
   ngOnInit(): void {
-    console.log(this.shippingCosts);
+    this.cartService.getShippingPrices().subscribe(data => {
+      // this.shippingCosts = data;
+      console.log(data);
 
+    })
   }
-
 }
